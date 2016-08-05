@@ -22,10 +22,8 @@ current = ("电流",[{'充一':85},{'充二':110},{'充三':125},
 	{'放一':-195},{'放二':-200},{'放三':-205},
 	{'正常':0}],hprint)
 
-buttons=[['测试启动',hprint],['测试关闭',hprint],['测试清理',hprint],\
-	['充电模式',hprint],['行车模式',hprint],['加热模式',hprint],\
-	['上电',hprint],['下电',hprint],['重启',hprint]
-	]
+buttons=['测试启动','测试关闭','测试清理','充电模式',\
+'行车模式','加热模式','上电','下电','重启']
 
 hgui = gui.Gui()
 hgui.title("Hgui 1.0")
@@ -35,8 +33,8 @@ hgui.row()
 
 hgui.col()
 hgui.gr(2)
-for name,func in buttons:
-	hgui.bu(name,command=lambda:func(name))
+for each in buttons:
+	hgui.bu(each,command=gui.Callable(hprint,each))
 
 def ccs_set():
 	hprint('CCS Enable' if ccs.swampy_var.get() else 'CCS Disable')
