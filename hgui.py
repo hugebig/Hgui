@@ -2,9 +2,18 @@
 import swampy.Gui as gui
 from radio_monitor import Radio_monitor
 from Tkinter import END
+import logging
+
+logger = logging.getLogger('hugebig') 
+logger.setLevel(logging.DEBUG)
+h_log = logging.FileHandler('hgui.log')
+formatter = logging.Formatter('%(asctime)s %(message)s')
+h_log.setFormatter(formatter)
+logger.addHandler(h_log)
 
 def hprint(info='hello hgui!'):
 	log_text.insert(END, info + '\n')
+	logger.info(info)
 
 cell_voltage = ("单体",[{'高一':4.19},{'高二':4.21},{'高三':4.23},
 	{'低一':3.25},{'低二':3.1},{'低三':2.8},
